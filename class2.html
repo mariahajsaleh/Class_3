@@ -1,0 +1,342 @@
+
+<!-------
+  Klasse erstellen:
+✓ Name der Klasse ist „adressbuch“ ✓ Eigenschaften sind:
+➢ Firma ➢ Adresse ➢ Telefon ➢ Email ➢ Stadt
+➢ PLZ
+➢ Land
+✓ Methoden sind:
+➢ neuesProdukt -> Parameter sind: Name, Preis -> Fügt neues Produkt
+➢ produktBearbeiten -> Parameter sind: feldID, Name, Preis -> Ändert Produktdaten
+➢ produktEntfernen -> Parameter sind: feldID -> Entfernt ein Produkt
+➢ anzahlProdukte -> kein Parameter! -> Gibt die Anzahl aller Produkte zurück
+➢ produktId -> Parameter sind : Name -> Findet heraus, was die feldID des Produkt X ist
+➢ neuerKunde-> Parameter sind: Vorname, Nachname, Alter, Tel, Email, Adresse -> Fügt neuen Kunden ➢ kundeBearbeiten -> Parameter sind: feldID, Wert -> Bearbeitet Kundendaten von einem Kunden
+➢ kundeEntfernen -> Parameter sind: feldID -> Entfernt einen Kunden
+➢ anzahlKunden -> Keine Parameter! -> Gibt die Anzahl aller Kunden zurück
+➢ kundenId -> Parameter sind: Vorname, Nachname -> Findet heraus, wie die feldID eines Kunden lautet
+Überlege dir, wie du die Kundendaten organisieren musst. Brauchst du dazu einen Array? Müssen die Werte in JSON verwaltet werden? Mach zwei Objekt aus der Klasse. Der eine ist eine Bäckerei und der andere ist ein Dönerladen
+  --------->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Formular</title>
+    <style>
+      .beispiel-1 {
+        background-color: blanchedalmond;
+        border: burlywood 4px outset;
+      }
+      .beispiel-2 {
+        background-color: cornflowerblue;
+        border: darkcyan 4px outset;
+      }
+      .beispiel-3 {
+        background-color: darkkhaki;
+        border: darkturquoise 4px outset;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="inhalt"></main>
+    <script>
+      /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+       * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+       * Bauplan
+       * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+       * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+       class Adressbuch {
+        constructor(ziel){
+             // Das Ziel, wo das Objekt angelegt werden soll
+             this._ziel = document.getElementById(ziel);
+          // -Eigenschaft
+          this._firma = "";
+           // -Eigenschaft
+           this._adresse =  "";
+            // -Eigenschaft
+            this._telefon = "";
+           // -Eigenschaft
+           this._email = "";
+            // -Eigenschaft
+            this._stadt = "";
+            // -Eigenschaft
+            this._plz = "";
+             // -Eigenschaft
+            this._land = "";
+             // 
+              // Design-Eigenschaft
+          this._design = "";
+            this._produkte = [];
+           this._kunden = [];
+        
+        }
+
+          /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Setter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+       
+         set firma(wert) {
+          if (typeof wert === "string") this._firma = wert;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Getter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         get firma() {
+          return this._firma;
+        }
+          /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Setter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+       
+         set adresse(wert) {
+          if (typeof wert === "string") this._adresse = wert;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Getter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         get adresse() {
+          return this._adresse;
+        }
+          /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Setter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+       
+         set telefon(wert) {
+          if (typeof wert === "number") this._telefon = wert;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Getter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         get telefon() {
+          return this._telefon;
+        }
+        
+          /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Setter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+       
+         set email(wert) {
+          if (typeof wert === "string") this._email = wert;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Getter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         get email() {
+          return this._email;
+        }
+         /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Setter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+       
+         set stadt(wert) {
+          if (typeof wert === "string") this._stadt = wert;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Getter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         get stadt() {
+          return this._stadt;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Setter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+       
+         set plz(wert) {
+          if (typeof wert === "number") this._plz= wert;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Getter für 
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         get plz() {
+          return this._plz;
+        }
+          /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Setter für land
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+       
+         set land(wert) {
+          if (typeof wert === "string") this._land = wert;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Getter für land
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         get land() {
+          return this._land;
+        }
+         /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Setter für den Design
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         set design(wert) {
+          if (typeof wert === "string") this._design = wert;
+        }
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Getter für den Design
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+        get design() {
+          return this._design;
+        }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : neuesProdukt
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         neuesProdukt(Name, Preis){
+       
+            this._produkte.push({produ:Name ,prei:Preis});
+         }
+          /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : produktBearbeiten
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         produktBearbeiten(feldID,Name, Preis){
+           
+            if (feldID >= 0 && feldID < this._produkte.length) {
+            this._produkte[feldID].produ =Name;
+            this._produkte[feldID].prei = Preis;
+          }
+        }
+       
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : produktEntfernen
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         produktEntfernen(feldID){
+           
+            if (feldID >= 0 && feldID < this._produkte.length) {
+            this._produkte.splice(feldID, 1);
+          
+          }
+       }
+       /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : anzahlProdukte
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         anzahlProdukte(){
+           
+            this._ziel.innerHTML += "<p>"+ "Anzahl der Produkte :" + this._produkte.length +"</p>" ;
+      }
+       /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : produktId
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+         produktId(Name){
+           
+          for(let x=0; x<this._produkte.length;x++ ){
+            if(this._produkte[x].produ.toLowerCase()=== Name.toLowerCase()){
+                this._ziel.innerHTML += "<p>"+ this._produkte[x].produ+" [Id] :" +  x  +"</p>";
+            }
+          }
+     }
+      /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : neuerKunde
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+     neuerKunde(Vorname, Nachname, Alter, Tel, Email, Adresse) {
+          this._kunden.push({ vorname: Vorname, nachname :Nachname, alter :Alter, tel:Tel, email:Email, adresse: Adresse });
+        }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : kundeBearbeiten
+         * * * * * * * * * * * * * * * * * * * * * * * * * **/ 
+         kundeBearbeiten(feldID, wert, wert_neu) {
+        if (feldID < this._kunden.length) {
+            this._kunden[feldID][wert] = wert_neu;
+        }
+    }
+ /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : kundeEntfernen
+         * * * * * * * * * * * * * * * * * * * * * * * * * **/ 
+         kundeEntfernen(feldID){
+              this._kunden.splice(feldID,1) ;
+         }
+     /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : anzahlKunden
+         * * * * * * * * * * * * * * * * * * * * * * * * * **/ 
+         anzahlKunden(feldID){
+            this._ziel.innerHTML += "<p>"+ "Anzahl der Kunden :" +  this._kunden.length +"</p>";
+         }
+         /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * Methode : kundenId
+         * * * * * * * * * * * * * * * * * * * * * * * * * **/ 
+         kundenId(Vname , Nname ){
+            for(let o=0; o<this._kunden.length;o++ ){
+                if(this._kunden[o].vorname.toLowerCase()=== Vname.toLowerCase() && this._kunden[o].nachname.toLowerCase()=== Nname.toLowerCase()  ){
+                    this._ziel.innerHTML += "<p>"+ this._kunden[o].vorname + this._kunden[o].nachname +" [Id] :" +o + "</p>" ; 
+                }
+            }
+            
+         }
+        ausgeben() {
+          let sam = "";
+          sam += `<p><b>${this._firma}</b></p>`;
+          sam += `<p>${this._adresse}</p>`;
+          sam += `<p>${this._telefon }</p>`;
+          sam += `<p>${this._email}</p>`;
+          sam += `<p>${this._stadt}</p>`;
+          sam += `<p>${this._plz}</p>`;
+          sam += `<p>${this._land }</p>`;
+          for(let n of this._produkte)
+         { sam += `<p>${n.produ}  ${n.prei}€</p>`;}
+         for(let z of this._kunden)
+         { sam += `<p>${z.vorname}  ${z.nachname} ${z.alter}  ${z.tel} ${z.email}  ${z.adresse}</p>`;}
+         
+          // *** //
+          if (this._design != "")
+          this._ziel.innerHTML += `<div class = "${this._design}">${sam}</div>`;
+              else this._ziel.innerHTML +=  sam;
+        }
+
+        }
+         /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+       * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+       * Instanz anlegen
+       * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+       * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+        const daten = new Adressbuch("inhalt");
+        daten.design = "beispiel-1";
+        daten.firma = "Döner Express";
+        daten.adresse="Turmstraße 456";
+        daten.telefon= 987654321;
+        daten.emai = "info@doenerexpress.com";
+        daten.stadt ="Hamm";
+        daten.plz=65423;
+        daten.land = "Deutschland";
+        daten.neuesProdukt("Döner", 5);
+        daten.neuesProdukt( "Falafel", 4);
+        daten.neuesProdukt( "Pommos", 3.5);
+        daten.produktBearbeiten(2,"Pizze",6)
+        daten. produktEntfernen(0);
+        daten.neuerKunde("Max", "Mustermann", 30, "123456789", "max@example.com", "Rotterdamerstraße 123");
+        daten.neuerKunde("Noha", "Ali", 33, "123456789", "max@example.com", "oberstraße 123");
+        daten. kundeBearbeiten(0,"nachname","Mohmmad")
+        daten.kundeEntfernen(1);
+        daten.ausgeben();
+        daten.anzahlProdukte();
+        daten.anzahlKunden()
+        daten.produktId("Falafel");
+        daten.kundenId("Max", "Mohmmad");
+        
+    //***********************************************
+        const daten1 = new Adressbuch("inhalt");
+        daten1.design = "beispiel-2";
+        daten1.firma = " Bäckerei";
+        daten1.adresse="Musterstraße 123";
+        daten1.telefon= 987654321;
+        daten1.emai = "info@baeckerei.com";
+        daten1.stadt ="Köln";
+        daten1.plz=65423;
+        daten1.land = "Deutschland";
+        daten1.neuesProdukt("Brötchen", 0.5);
+        daten1.neuesProdukt( "Kasebrötchen", 4);
+        daten1.neuesProdukt( "Kuchen", 9);
+        daten1.produktBearbeiten(2,"Donut",2)
+        daten1. produktEntfernen(0);
+        daten1.neuerKunde("Max", "Mustermann", 30, "123456789", "max@example.com", "Musterstraße 123");
+        daten1.neuerKunde("Noha", "Ali", 33, "123456789", "max@example.com", "oberstraße 123");
+        daten1.ausgeben();
+        daten1.anzahlProdukte();
+        daten1.anzahlKunden();
+        daten1.produktId("Kasebrötchen");
+        daten1.kundenId("Noha", "Ali");
+       
+
+    </script>
+  </body>
+</html>
